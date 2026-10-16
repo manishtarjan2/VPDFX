@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import { Search, Sun, Moon, ShieldCheck, Zap, Sparkles, SlidersHorizontal, ArrowRight, X, Menu } from "lucide-react";
 
 type Tab = "link" | "upload" | "search";
 
@@ -133,10 +134,10 @@ function Navbar({ dark, onToggle, searchValue, onSearchChange }: { dark: boolean
           {/* Hamburger button for mobile/tablets */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden w-9 h-9 rounded-lg border border-[var(--border)] bg-[var(--bg-card2)] flex items-center justify-center text-[17px] text-[var(--text-primary)] cursor-pointer"
+            className="md:hidden w-9 h-9 rounded-xl border border-[var(--border)] bg-[var(--bg-card2)] flex items-center justify-center text-[var(--text-primary)] cursor-pointer hover:bg-[var(--bg-card)] transition-colors shadow-xs"
             aria-label="Toggle navigation menu"
           >
-            {mobileMenuOpen ? "✕" : "☰"}
+            {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
 
           <a href="/" className="flex items-center gap-2 no-underline shrink-0">
@@ -151,19 +152,19 @@ function Navbar({ dark, onToggle, searchValue, onSearchChange }: { dark: boolean
           ))}
         </div>
 
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-3">
           {/* Mobile search toggle icon */}
           <button
             onClick={() => setMobileSearchOpen(!mobileSearchOpen)}
-            className="sm:hidden w-8 h-8 rounded-full border border-[var(--border)] bg-[var(--bg-card2)] flex items-center justify-center text-[14px] cursor-pointer"
+            className="sm:hidden w-8 h-8 rounded-full border border-[var(--border)] bg-[var(--bg-card2)] flex items-center justify-center text-[var(--text-primary)] cursor-pointer hover:bg-[var(--bg-card)] transition-colors"
             title="Search"
           >
-            🔎
+            <Search size={15} />
           </button>
 
           {/* Desktop & Tablet Search Bar */}
           <div className="relative hidden sm:flex items-center gap-2 bg-[var(--bg-card2)] border-[1.5px] border-[var(--border)] rounded-full px-3.5 py-1.5 w-[140px] md:w-[190px] lg:w-[220px] focus-within:border-[var(--accent)] transition-all">
-            <span className="text-[var(--text-muted)] text-[13px]">🔎</span>
+            <Search size={15} className="text-[var(--text-muted)] shrink-0" />
             <input
               value={searchValue}
               onChange={(event) => onSearchChange(event.target.value)}
@@ -235,13 +236,13 @@ function Navbar({ dark, onToggle, searchValue, onSearchChange }: { dark: boolean
             )}
           </div>
 
-          <button onClick={onToggle} title="Toggle dark mode" className="w-8 h-8 sm:w-[38px] sm:h-[38px] rounded-full border-[1.5px] border-[var(--border)] bg-[var(--bg-card)] cursor-pointer text-[14px] sm:text-[17px] flex items-center justify-center transition-all shrink-0 hover:border-[var(--accent)] hover:shadow-xs">
-            {dark ? "☀️" : "🌙"}
+          <button onClick={onToggle} title="Toggle dark mode" className="w-8 h-8 sm:w-[38px] sm:h-[38px] rounded-full border-[1.5px] border-[var(--border)] bg-[var(--bg-card)] cursor-pointer text-[var(--text-primary)] flex items-center justify-center transition-all shrink-0 hover:border-[var(--accent)] hover:shadow-xs">
+            {dark ? <Sun size={16} /> : <Moon size={16} />}
           </button>
 
-          <div className="flex items-center gap-1.5 sm:gap-2">
-            <a href="#login" className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card2)] font-semibold text-[13px] sm:text-[14px] px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg transition-all duration-150 whitespace-nowrap no-underline">Log In</a>
-            <a href="#signin" className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card2)] font-semibold text-[13px] sm:text-[14px] px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg transition-all duration-150 whitespace-nowrap no-underline">Sign In</a>
+          <div className="flex items-center gap-1 sm:gap-2">
+            <a href="#login" className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card2)] font-semibold text-[12px] sm:text-[14px] px-2 sm:px-3.5 py-1.5 sm:py-2 rounded-lg transition-all duration-150 whitespace-nowrap no-underline">Log In</a>
+            <a href="#signin" className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card2)] font-semibold text-[12px] sm:text-[14px] px-2 sm:px-3.5 py-1.5 sm:py-2 rounded-lg transition-all duration-150 whitespace-nowrap no-underline">Sign In</a>
           </div>
         </div>
       </div>
@@ -328,70 +329,65 @@ function Hero({ dark }: { dark: boolean }) {
           </p>
 
           {/* Action CTAs: Direct Editor Link & Tools */}
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-3.5 mb-7">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center md:justify-start gap-3 mb-7 max-w-[420px] mx-auto md:mx-0">
             <a
               href="/editor"
-              className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-700 to-purple-600 text-white font-bold text-[14px] sm:text-[15px] shadow-lg hover:shadow-indigo-500/25 hover:scale-[1.02] active:scale-98 transition-all no-underline"
+              className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-700 to-purple-600 text-white font-bold text-[14px] sm:text-[15px] shadow-lg hover:shadow-indigo-500/25 hover:scale-[1.02] active:scale-98 transition-all no-underline"
             >
-              <span>✨</span>
+              <Sparkles size={16} />
               <span>Open Canva PDF Editor</span>
             </a>
             <a
               href="/workflow"
-              className="flex items-center gap-2 px-5 py-3 rounded-xl bg-white dark:bg-white/10 hover:bg-gray-50 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-100 font-bold text-[14px] sm:text-[15px] shadow-xs hover:scale-[1.02] active:scale-98 transition-all no-underline"
+              className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white dark:bg-white/10 hover:bg-gray-50 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-100 font-bold text-[14px] sm:text-[15px] shadow-xs hover:scale-[1.02] active:scale-98 transition-all no-underline"
             >
-              <span>⚙️</span>
+              <SlidersHorizontal size={15} />
               <span>Custom Workflows</span>
             </a>
           </div>
 
-          <div className="inline-flex flex-row items-center justify-center md:justify-start gap-4 sm:gap-6 flex-wrap sm:flex-nowrap p-2 sm:p-2.5 rounded-2xl bg-white/40 dark:bg-white/5 backdrop-blur-md border border-[var(--border)] shadow-xs">
-            <div className="flex items-center gap-2.5 px-2 shrink-0">
-              <div className="w-9 h-9 rounded-full bg-[#e0e7ff] text-[#4f46e5] flex items-center justify-center text-base shrink-0 shadow-xs">🛡️</div>
-              <div className="text-left">
-                <div className="text-[13px] font-extrabold text-[var(--text-primary)] whitespace-nowrap leading-tight">100% Secure</div>
-                <div className="text-[11px] text-[var(--text-secondary)] whitespace-nowrap">Your files are safe</div>
+          {/* Three Feature Badges: Clean responsive 3-column / stack grid */}
+          <div className="grid grid-cols-3 gap-2 sm:gap-4 p-3 rounded-2xl bg-white/70 dark:bg-white/5 backdrop-blur-md border border-[var(--border)] shadow-xs max-w-[460px] mx-auto md:mx-0">
+            <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-1.5 sm:gap-2.5">
+              <div className="w-8 h-8 rounded-full bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0 shadow-2xs">
+                <ShieldCheck size={16} />
+              </div>
+              <div className="min-w-0">
+                <div className="text-[12px] sm:text-[13px] font-extrabold text-[var(--text-primary)] leading-tight">100% Secure</div>
+                <div className="text-[10px] text-[var(--text-secondary)] hidden xs:block truncate">Files are safe</div>
               </div>
             </div>
 
-            <div className="hidden sm:block w-px h-6 bg-[var(--border)]" />
-            
-            <div className="flex items-center gap-2.5 px-2 shrink-0">
-              <div className="w-9 h-9 rounded-full bg-[#ede9fe] text-[#8b5cf6] flex items-center justify-center text-base shrink-0 shadow-xs">⚡</div>
-              <div className="text-left">
-                <div className="text-[13px] font-extrabold text-[var(--text-primary)] whitespace-nowrap leading-tight">Super Fast</div>
-                <div className="text-[11px] text-[var(--text-secondary)] whitespace-nowrap">Instant processing</div>
+            <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-1.5 sm:gap-2.5 border-x border-[var(--border)] px-1 sm:px-2">
+              <div className="w-8 h-8 rounded-full bg-purple-50 dark:bg-purple-950/40 text-purple-600 dark:text-purple-400 flex items-center justify-center shrink-0 shadow-2xs">
+                <Zap size={15} />
+              </div>
+              <div className="min-w-0">
+                <div className="text-[12px] sm:text-[13px] font-extrabold text-[var(--text-primary)] leading-tight">Super Fast</div>
+                <div className="text-[10px] text-[var(--text-secondary)] hidden xs:block truncate">Instant process</div>
               </div>
             </div>
 
-            <div className="hidden sm:block w-px h-6 bg-[var(--border)]" />
-            
-            <div className="flex items-center gap-2.5 px-2 shrink-0">
-              <div className="w-9 h-9 rounded-full bg-[#fef9c3] text-[#eab308] flex items-center justify-center text-base shrink-0 shadow-xs">👑</div>
-              <div className="text-left">
-                <div className="text-[13px] font-extrabold text-[var(--text-primary)] whitespace-nowrap leading-tight">Free to Use</div>
-                <div className="text-[11px] text-[var(--text-secondary)] whitespace-nowrap">No installation</div>
+            <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-1.5 sm:gap-2.5">
+              <div className="w-8 h-8 rounded-full bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0 shadow-2xs">
+                <Sparkles size={15} />
+              </div>
+              <div className="min-w-0">
+                <div className="text-[12px] sm:text-[13px] font-extrabold text-[var(--text-primary)] leading-tight">Free to Use</div>
+                <div className="text-[10px] text-[var(--text-secondary)] hidden xs:block truncate">No install</div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="vx-fade-right flex-1 flex flex-col justify-center items-center relative w-full max-w-[420px]">
-          {/* MOBILE HORIZONTAL ICONS */}
-          <div className="flex sm:hidden flex-row items-center justify-center gap-3 w-full bg-white/50 dark:bg-white/5 py-3 rounded-2xl border border-[var(--border)]">
-            <div className="w-9 h-9 bg-white dark:bg-slate-800 rounded-lg shadow-sm flex items-center justify-center animate-[floatA_4s_ease-in-out_infinite]">
-              <div className="bg-[#ef4444] text-white w-6 h-6 rounded flex items-center justify-center text-[8px] font-black tracking-tight">PDF</div>
-            </div>
-            <div className="w-9 h-9 bg-white dark:bg-slate-800 rounded-lg shadow-sm flex items-center justify-center animate-[floatB_5s_ease-in-out_infinite_1s]">
-              <div className="text-[16px]">📄</div>
-            </div>
-            <img src={dark ? "/image-dark.png" : "/image-copy.png"} alt="VPDFX Graphic" className="h-9 object-contain mx-1 drop-shadow-md" />
-            <div className="w-9 h-9 bg-white dark:bg-slate-800 rounded-lg shadow-sm flex items-center justify-center animate-[floatB_4.5s_ease-in-out_infinite_0.5s]">
-              <div className="bg-[#8b5cf6] text-white w-6 h-6 rounded flex items-center justify-center text-[11px]">🎥</div>
-            </div>
-            <div className="w-9 h-9 bg-white dark:bg-slate-800 rounded-lg shadow-sm flex items-center justify-center animate-[floatA_5s_ease-in-out_infinite_1.5s]">
-              <div className="bg-[#10b981] text-white w-6 h-6 rounded flex items-center justify-center text-[12px]">🖼️</div>
-            </div>
+        <div className="vx-fade-right flex-1 flex flex-col justify-center items-center relative w-full max-w-[420px] mt-4 md:mt-0">
+          {/* MOBILE STREAMLINED TOOL CAPSULE */}
+          <div className="flex sm:hidden items-center justify-between gap-2 w-full max-w-[340px] px-4 py-2.5 bg-white/80 dark:bg-slate-900/80 rounded-2xl border border-[var(--border)] shadow-sm backdrop-blur-md">
+            <span className="w-8 h-8 bg-red-500/10 text-red-600 font-black text-[10px] rounded-lg flex items-center justify-center border border-red-500/20">PDF</span>
+            <span className="text-[18px]">📄</span>
+            <img src={dark ? "/image-dark.png" : "/image-copy.png"} alt="VPDFX" className="h-6 object-contain" />
+            <span className="text-[18px]">🎬</span>
+            <span className="text-[18px]">🖼️</span>
           </div>
 
           {/* DESKTOP FLOATING GRAPHIC */}
