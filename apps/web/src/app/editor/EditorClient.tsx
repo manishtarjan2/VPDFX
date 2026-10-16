@@ -1259,7 +1259,8 @@ export default function EditorClient() {
     try {
       const formData = new FormData();
       formData.append("file", selectedFile);
-      const res = await fetch("http://127.0.0.1:8000/api/parse-pdf", {
+      const pythonApi = process.env.NEXT_PUBLIC_PYTHON_API_URL || (typeof window !== "undefined" ? `${window.location.protocol}//${window.location.hostname}:8000` : "http://localhost:8000");
+      const res = await fetch(`${pythonApi}/api/parse-pdf`, {
         method: "POST",
         body: formData,
       });
