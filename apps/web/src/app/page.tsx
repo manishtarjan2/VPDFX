@@ -321,7 +321,7 @@ function Hero({ dark }: { dark: boolean }) {
         <div className="w-full flex-1 max-w-[620px] flex flex-col items-start text-left">
           {/* Hero Headline & Mobile Mini Emblem Inline */}
           <div className="flex flex-row items-center justify-between gap-3 w-full mb-4">
-            <h1 className="flex-1 text-[clamp(28px,5.2vw,56px)] font-black leading-[1.12] tracking-tight text-[var(--text-primary)] text-left">
+            <h1 className="flex-1 text-[clamp(33px,6vw,56px)] font-black leading-[1.1] tracking-tight text-[var(--text-primary)] text-left">
               All Your Files.<br />
               <span className="text-[#2563eb]">One Place.</span>
             </h1>
