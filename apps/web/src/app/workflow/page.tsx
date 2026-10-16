@@ -296,7 +296,7 @@ export default function WorkflowPage() {
 
   return (
     <div className="min-h-screen flex flex-col font-[var(--font-inter)] text-[var(--text-primary)]">
-      <nav className="sticky top-0 z-[100] backdrop-blur-xl border-b border-[var(--border)] transition-colors duration-300 bg-[var(--bg-card)]/85 shadow-[0_2px_20px_rgba(0,0,0,.08)]">
+      <nav className="fixed top-0 left-0 right-0 w-full z-[100] backdrop-blur-xl border-b border-[var(--border)] transition-colors duration-300 bg-[var(--bg-card)]/85 shadow-[0_2px_20px_rgba(0,0,0,.08)]">
         <div className="max-w-[1280px] mx-auto flex items-center h-16 px-4 sm:px-6 gap-2 sm:gap-6 justify-between">
           <div className="flex items-center gap-2 sm:gap-4 shrink-0">
             <button
@@ -330,6 +330,8 @@ export default function WorkflowPage() {
           </div>
         </div>
       </nav>
+      {/* Spacer for fixed header */}
+      <div className="h-16 w-full shrink-0" aria-hidden="true" />
 
       <main className="flex-1 w-full max-w-[1000px] mx-auto px-4 py-6 sm:px-6 sm:py-10">
         

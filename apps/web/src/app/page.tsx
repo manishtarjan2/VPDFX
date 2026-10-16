@@ -127,9 +127,25 @@ function Navbar({ dark, onToggle, searchValue, onSearchChange }: { dark: boolean
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Lock background body scroll when mobile drawer is open so the screen does not slide
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+      document.body.style.touchAction = "none";
+    } else {
+      document.body.style.overflow = "";
+      document.body.style.touchAction = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.touchAction = "";
+    };
+  }, [mobileMenuOpen]);
+
   return (
-    <nav className="sticky top-0 z-[100] backdrop-blur-xl border-b border-[var(--border)] transition-colors duration-300 bg-[var(--bg-card)]/90 transition-shadow" style={{ boxShadow: scrolled ? "0 2px 20px rgba(0,0,0,.08)" : "none" }}>
-      <div className="max-w-[1280px] mx-auto flex items-center h-16 px-3.5 sm:px-6 gap-2 sm:gap-6 justify-between">
+    <>
+      <nav className="fixed top-0 left-0 right-0 z-[100] w-full backdrop-blur-xl border-b border-[var(--border)] transition-colors duration-300 bg-[var(--bg-card)]/90 transition-shadow" style={{ boxShadow: scrolled ? "0 2px 20px rgba(0,0,0,.08)" : "none" }}>
+        <div className="max-w-[1280px] mx-auto flex items-center h-16 px-3.5 sm:px-6 gap-2 sm:gap-6 justify-between">
         <div className="flex items-center gap-2 sm:gap-4 shrink-0">
           {/* Hamburger button for mobile/tablets */}
           <button
@@ -278,31 +294,53 @@ function Navbar({ dark, onToggle, searchValue, onSearchChange }: { dark: boolean
         </div>
       )}
 
-      {/* Mobile Drawer Menu (iPhone / Android / Small Tablet) */}
+      </nav>
+      {/* Spacer so page content starts cleanly below the fixed 64px header */}
+      <div className="h-16 w-full shrink-0" aria-hidden="true" />
+
+      {/* Mobile Drawer Menu & Fullscreen Backdrop outside <nav> */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-[var(--border)] bg-[var(--bg-card)] px-4 py-3 shadow-xl flex flex-col gap-1 max-h-[calc(100vh-64px)] overflow-y-auto">
-          <div className="text-[11px] font-bold text-[var(--text-muted)] uppercase tracking-wider px-2 py-1">Navigation</div>
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-[var(--text-primary)] font-medium text-[15px] py-2 px-3 rounded-lg hover:bg-[var(--bg-card2)] transition-colors no-underline flex items-center justify-between"
-            >
-              <span>{link.label}</span>
-              <span className="text-[var(--text-muted)] text-[12px]">→</span>
-            </a>
-          ))}
+        <div className="md:hidden fixed inset-0 z-[9999] flex">
+          {/* Fullscreen backdrop to immediately dismiss menu on click or touch */}
+          <div
+            className="fixed inset-0 bg-black/40 backdrop-blur-xs transition-opacity cursor-pointer"
+            onClick={() => setMobileMenuOpen(false)}
+            onTouchEnd={() => setMobileMenuOpen(false)}
+          />
 
-          <div className="h-px bg-[var(--border)] my-2" />
+          {/* 40% width sidebar drawer - top offset 64px to clear fixed header */}
+          <div 
+            className="relative z-10 w-[42%] sm:w-[38%] min-w-[190px] max-w-[230px] my-2 ml-2 rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] px-3 py-3.5 shadow-2xl flex flex-col justify-between overflow-y-auto"
+            style={{ 
+              marginTop: "72px",
+              height: "calc(100vh - 64px - 64px - 24px - env(safe-area-inset-bottom, 0px))" 
+            }}
+          >
+            <div className="flex flex-col gap-1">
+              <div className="text-[11px] font-bold text-[var(--text-muted)] uppercase tracking-wider px-2 py-1">Navigation</div>
+              {NAV_LINKS.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-[var(--text-primary)] font-medium text-[14px] py-2 px-2.5 rounded-lg hover:bg-[var(--bg-card2)] transition-colors no-underline flex items-center justify-between"
+                >
+                  <span>{link.label}</span>
+                  <span className="text-[var(--text-muted)] text-[11px]">→</span>
+                </a>
+              ))}
+            </div>
 
-          <div className="flex gap-2 pt-1 pb-2">
-            <a href="#login" onClick={() => setMobileMenuOpen(false)} className="flex-1 text-center py-2 text-[14px] font-semibold rounded-xl border border-[var(--border)] text-[var(--text-primary)] bg-[var(--bg-card2)] no-underline">Log In</a>
-            <a href="#signin" onClick={() => setMobileMenuOpen(false)} className="flex-1 text-center py-2 text-[14px] font-semibold rounded-xl border border-[var(--border)] text-[var(--text-primary)] bg-[var(--bg-card2)] no-underline">Sign In</a>
+            <div className="pt-3 border-t border-[var(--border)] mt-2">
+              <div className="flex flex-col gap-2 pb-1">
+                <a href="#login" onClick={() => setMobileMenuOpen(false)} className="w-full text-center py-2 text-[13px] font-semibold rounded-xl border border-[var(--border)] text-[var(--text-primary)] bg-[var(--bg-card2)] no-underline">Log In</a>
+                <a href="#signin" onClick={() => setMobileMenuOpen(false)} className="w-full text-center py-2 text-[13px] font-semibold rounded-xl bg-indigo-600 text-white font-bold no-underline">Sign In</a>
+              </div>
+            </div>
           </div>
         </div>
       )}
-    </nav>
+    </>
   );
 }
 

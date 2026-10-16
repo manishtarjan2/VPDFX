@@ -36,7 +36,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-screen flex flex-col pb-16 md:pb-0" suppressHydrationWarning>
+      <body className="min-h-screen flex flex-col pb-24 md:pb-0" suppressHydrationWarning>
         {children}
         <MobileBottomBar />
       </body>
