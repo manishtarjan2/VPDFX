@@ -1,0 +1,152 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+  SUPER_ADMIN
+}
+
+enum JobStatus {
+  CREATED
+  UPLOADING
+  QUEUED
+  PROCESSING
+  COMPLETED
+  FAILED
+  CANCELLED
+  EXPIRED
+}
+
+model User {
+  id            String    @id @default(uuid())
+  name          String?
+  email         String    @unique
+  passwordHash  String
+  avatar        String?
+  role          Role      @default(USER)
+  plan          String    @default("Free")
+  emailVerified Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  files         File[]
+  jobs          ProcessingJob[]
+  subscriptions Subscription[]
+  usage         Usage[]
+  downloads     Download[]
+  blogPosts     BlogPost[]
+}
+
+model File {
+  id           String    @id @default(uuid())
+  userId       String
+  originalName String
+  storedName   String
+  mimeType     String
+  extension    String
+  size         Int
+  storageKey   String
+  storageUrl   String?
+  status       String
+  expiresAt    DateTime?
+  createdAt    DateTime  @default(now())
+
+  user         User      @relation(fields: [userId], references: [id])
+  jobs         ProcessingJob[]
+  downloads    Download[]
+}
+
+model ProcessingJob {
+  id           String    @id @default(uuid())
+  userId       String
+  fileId       String
+  tool         String
+  inputFormat  String?
+  outputFormat String?
+  status       JobStatus @default(CREATED)
+  progress     Int       @default(0)
+  errorMessage String?
+  workerId     String?
+  startedAt    DateTime?
+  completedAt  DateTime?
+  expiresAt    DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  user         User      @relation(fields: [userId], references: [id])
+  file         File      @relation(fields: [fileId], references: [id])
+}
+
+model Tool {
+  id           String   @id @default(uuid())
+  name         String
+  slug         String   @unique
+  category     String
+  description  String
+  isActive     Boolean  @default(true)
+  isPremium    Boolean  @default(false)
+  maxFileSize  Int      @default(104857600) // 100MB default
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Subscription {
+  id                     String   @id @default(uuid())
+  userId                 String
+  plan                   String
+  status                 String
+  provider               String
+  providerSubscriptionId String?
+  startDate              DateTime
+  endDate                DateTime
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+
+  user                   User     @relation(fields: [userId], references: [id])
+}
+
+model Usage {
+  id             String   @id @default(uuid())
+  userId         String
+  tool           String
+  fileSize       Int
+  processingTime Int?
+  createdAt      DateTime @default(now())
+
+  user           User     @relation(fields: [userId], references: [id])
+}
+
+model Download {
+  id        String   @id @default(uuid())
+  userId    String
+  fileId    String
+  ipHash    String?
+  userAgent String?
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id])
+  file      File     @relation(fields: [fileId], references: [id])
+}
+
+model BlogPost {
+  id          String    @id @default(uuid())
+  title       String
+  slug        String    @unique
+  content     String    @db.Text
+  excerpt     String?
+  coverImage  String?
+  authorId    String
+  status      String    @default("DRAFT")
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  author      User      @relation(fields: [authorId], references: [id])
+}

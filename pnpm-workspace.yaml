@@ -1,0 +1,17 @@
+packages:
+  - 'apps/*'
+  - 'packages/*'
+allowBuilds:
+  '@prisma/client': true
+  '@prisma/engines': true
+  esbuild: true
+  ffmpeg-static: true
+  prisma: true
+  protobufjs: set this to true or false
+  sharp: set this to true or false
+  tesseract.js: set this to true or false
+  unrs-resolver: set this to true or false
+  workerd: set this to true or false
+  youtube-dl-exec: true
+minimumReleaseAgeExclude:
+  - lucide-react@1.55.0
