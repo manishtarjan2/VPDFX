@@ -346,35 +346,39 @@ function Hero({ dark }: { dark: boolean }) {
             </a>
           </div>
 
-          {/* Three Feature Badges: Clean responsive 3-column / stack grid */}
-          <div className="grid grid-cols-3 gap-2 sm:gap-4 p-3 rounded-2xl bg-white/70 dark:bg-white/5 backdrop-blur-md border border-[var(--border)] shadow-xs max-w-[460px] mx-auto md:mx-0">
-            <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-1.5 sm:gap-2.5">
-              <div className="w-8 h-8 rounded-full bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0 shadow-2xs">
-                <ShieldCheck size={16} />
+          {/* Three Feature Badges: Guaranteed single horizontal line on all mobile screens */}
+          <div className="flex flex-row items-center justify-between w-full py-2.5 px-3 rounded-2xl bg-white/70 dark:bg-white/5 backdrop-blur-md border border-[var(--border)] shadow-xs max-w-[480px] mx-auto md:mx-0">
+            <div className="flex flex-1 items-center justify-center sm:justify-start gap-1.5 sm:gap-2 px-1">
+              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
+                <ShieldCheck size={14} className="sm:w-4 sm:h-4" />
               </div>
-              <div className="min-w-0">
-                <div className="text-[12px] sm:text-[13px] font-extrabold text-[var(--text-primary)] leading-tight">100% Secure</div>
-                <div className="text-[10px] text-[var(--text-secondary)] hidden xs:block truncate">Files are safe</div>
-              </div>
-            </div>
-
-            <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-1.5 sm:gap-2.5 border-x border-[var(--border)] px-1 sm:px-2">
-              <div className="w-8 h-8 rounded-full bg-purple-50 dark:bg-purple-950/40 text-purple-600 dark:text-purple-400 flex items-center justify-center shrink-0 shadow-2xs">
-                <Zap size={15} />
-              </div>
-              <div className="min-w-0">
-                <div className="text-[12px] sm:text-[13px] font-extrabold text-[var(--text-primary)] leading-tight">Super Fast</div>
-                <div className="text-[10px] text-[var(--text-secondary)] hidden xs:block truncate">Instant process</div>
+              <div className="min-w-0 text-left">
+                <div className="text-[11px] sm:text-[13px] font-extrabold text-[var(--text-primary)] leading-tight whitespace-nowrap">100% Secure</div>
+                <div className="text-[9px] sm:text-[11px] text-[var(--text-secondary)] whitespace-nowrap hidden sm:block">Your files are safe</div>
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-1.5 sm:gap-2.5">
-              <div className="w-8 h-8 rounded-full bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0 shadow-2xs">
-                <Sparkles size={15} />
+            <div className="w-px h-6 bg-[var(--border)] shrink-0 mx-1" />
+
+            <div className="flex flex-1 items-center justify-center sm:justify-start gap-1.5 sm:gap-2 px-1">
+              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-purple-50 dark:bg-purple-950/40 text-purple-600 dark:text-purple-400 flex items-center justify-center shrink-0">
+                <Zap size={14} className="sm:w-4 sm:h-4" />
               </div>
-              <div className="min-w-0">
-                <div className="text-[12px] sm:text-[13px] font-extrabold text-[var(--text-primary)] leading-tight">Free to Use</div>
-                <div className="text-[10px] text-[var(--text-secondary)] hidden xs:block truncate">No install</div>
+              <div className="min-w-0 text-left">
+                <div className="text-[11px] sm:text-[13px] font-extrabold text-[var(--text-primary)] leading-tight whitespace-nowrap">Super Fast</div>
+                <div className="text-[9px] sm:text-[11px] text-[var(--text-secondary)] whitespace-nowrap hidden sm:block">Instant processing</div>
+              </div>
+            </div>
+
+            <div className="w-px h-6 bg-[var(--border)] shrink-0 mx-1" />
+
+            <div className="flex flex-1 items-center justify-center sm:justify-start gap-1.5 sm:gap-2 px-1">
+              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
+                <Sparkles size={14} className="sm:w-4 sm:h-4" />
+              </div>
+              <div className="min-w-0 text-left">
+                <div className="text-[11px] sm:text-[13px] font-extrabold text-[var(--text-primary)] leading-tight whitespace-nowrap">Free to Use</div>
+                <div className="text-[9px] sm:text-[11px] text-[var(--text-secondary)] whitespace-nowrap hidden sm:block">No installation</div>
               </div>
             </div>
           </div>
