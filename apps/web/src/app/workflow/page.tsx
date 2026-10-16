@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
+const PYTHON_API_BASE = process.env.NEXT_PUBLIC_PYTHON_API_URL || "http://localhost:8000";
+
 const AVAILABLE_TOOLS = [
   { id: "text-to-pdf", name: "Text to PDF", icon: "📝", in: "text", out: "pdf" },
   { id: "word-to-pdf", name: "Word to PDF", icon: "📝", in: "word", out: "pdf" },
@@ -153,7 +155,7 @@ export default function WorkflowPage() {
               const tempBytes = await currentPdf.save();
               const formData = new FormData();
               formData.append("file", new Blob([tempBytes], { type: "application/pdf" }), "temp.pdf");
-              const res = await fetch("http://localhost:8000/remove-page-numbers", { method: "POST", body: formData });
+              const res = await fetch(`${PYTHON_API_BASE}/remove-page-numbers`, { method: "POST", body: formData });
               if (res.ok) {
                 const cleanedBuffer = await res.arrayBuffer();
                 currentPdf = await PDFDocument.load(cleanedBuffer);
@@ -213,7 +215,7 @@ export default function WorkflowPage() {
               const tempBytes = await currentPdf.save();
               const formData = new FormData();
               formData.append("file", new Blob([tempBytes], { type: "application/pdf" }), "temp.pdf");
-              const res = await fetch("http://localhost:8000/remove-page-numbers", { method: "POST", body: formData });
+              const res = await fetch(`${PYTHON_API_BASE}/remove-page-numbers`, { method: "POST", body: formData });
               if (res.ok) {
                 const cleanedBuffer = await res.arrayBuffer();
                 currentPdf = await PDFDocument.load(cleanedBuffer);
