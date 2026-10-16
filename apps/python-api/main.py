@@ -1,12 +1,49 @@
-from fastapi import FastAPI, UploadFile, File, Form
+import time
+from collections import defaultdict
+from fastapi import FastAPI, UploadFile, File, Form, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import Response
+from fastapi.responses import Response, JSONResponse
 import fitz  # PyMuPDF
 import re
 import io
 import json
 
 app = FastAPI()
+
+# In-memory sliding window rate limiter: 20 req/s per IP
+_rate_limits = defaultdict(lambda: {"count": 0, "reset_time": 0.0})
+
+@app.middleware("http")
+async def security_and_rate_limit_middleware(request: Request, call_next):
+    # Rate Limiting: 20 req/sec per IP
+    forwarded = request.headers.get("x-forwarded-for")
+    client_ip = forwarded.split(",")[0].strip() if forwarded else (request.client.host if request.client else "unknown")
+    now = time.time()
+    
+    ip_data = _rate_limits[client_ip]
+    if now > ip_data["reset_time"]:
+        ip_data["count"] = 1
+        ip_data["reset_time"] = now + 1.0  # 1 second window
+    else:
+        ip_data["count"] += 1
+        if ip_data["count"] > 20:
+            return JSONResponse(
+                status_code=429,
+                content={
+                    "detail": "Rate limit exceeded: maximum 20 requests per second allowed.",
+                    "status_code": 429
+                },
+                headers={"Retry-After": "1"}
+            )
+            
+    response = await call_next(request)
+    
+    # Security Headers
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "DENY"
+    response.headers["X-XSS-Protection"] = "1; mode=block"
+    response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
+    return response
 
 app.add_middleware(
     CORSMiddleware,

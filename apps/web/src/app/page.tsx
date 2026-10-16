@@ -144,7 +144,7 @@ function Navbar({ dark, onToggle, searchValue, onSearchChange }: { dark: boolean
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-[100] w-full backdrop-blur-xl border-b border-[var(--border)] transition-colors duration-300 bg-[var(--bg-card)]/90 transition-shadow" style={{ boxShadow: scrolled ? "0 2px 20px rgba(0,0,0,.08)" : "none" }}>
+      <nav className="fixed top-0 left-0 right-0 z-[900] w-full backdrop-blur-xl border-b border-[var(--border)] transition-colors duration-300 bg-[var(--bg-card)]/95 transition-shadow" style={{ boxShadow: scrolled ? "0 2px 20px rgba(0,0,0,.08)" : "none" }}>
         <div className="max-w-[1280px] mx-auto flex items-center h-16 px-3.5 sm:px-6 gap-2 sm:gap-6 justify-between">
         <div className="flex items-center gap-2 sm:gap-4 shrink-0">
           {/* Hamburger button for mobile/tablets */}
@@ -294,27 +294,20 @@ function Navbar({ dark, onToggle, searchValue, onSearchChange }: { dark: boolean
         </div>
       )}
 
-      </nav>
-      {/* Spacer so page content starts cleanly below the fixed 64px header */}
-      <div className="h-16 w-full shrink-0" aria-hidden="true" />
-
-      {/* Mobile Drawer Menu & Fullscreen Backdrop outside <nav> */}
+      {/* Mobile Drawer Menu (Slide-out half width floating sidebar with clean margins) */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 z-[9999] flex">
-          {/* Fullscreen backdrop to immediately dismiss menu on click or touch */}
+        <div className="md:hidden fixed inset-0 top-16 z-[999] flex pointer-events-auto">
+          {/* Backdrop overlay to click/tap anywhere outside and immediately close the menu */}
           <div
-            className="fixed inset-0 bg-black/40 backdrop-blur-xs transition-opacity cursor-pointer"
+            className="fixed inset-0 top-16 bg-black/40 backdrop-blur-xs transition-opacity cursor-pointer"
             onClick={() => setMobileMenuOpen(false)}
-            onTouchEnd={() => setMobileMenuOpen(false)}
+            onTouchStart={() => setMobileMenuOpen(false)}
           />
 
-          {/* 40% width sidebar drawer - top offset 64px to clear fixed header */}
+          {/* 40% width sidebar drawer - with gaps from top navbar and bottom bar, plus rounded corners */}
           <div 
             className="relative z-10 w-[42%] sm:w-[38%] min-w-[190px] max-w-[230px] my-2 ml-2 rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] px-3 py-3.5 shadow-2xl flex flex-col justify-between overflow-y-auto"
-            style={{ 
-              marginTop: "72px",
-              height: "calc(100vh - 64px - 64px - 24px - env(safe-area-inset-bottom, 0px))" 
-            }}
+            style={{ height: "calc(100vh - 64px - 64px - 24px - env(safe-area-inset-bottom, 0px))" }}
           >
             <div className="flex flex-col gap-1">
               <div className="text-[11px] font-bold text-[var(--text-muted)] uppercase tracking-wider px-2 py-1">Navigation</div>
@@ -340,6 +333,9 @@ function Navbar({ dark, onToggle, searchValue, onSearchChange }: { dark: boolean
           </div>
         </div>
       )}
+      </nav>
+      {/* Spacer so page content starts cleanly below the fixed 64px header */}
+      <div className="h-16 w-full shrink-0" aria-hidden="true" />
     </>
   );
 }

@@ -65,7 +65,7 @@ export default function CategoryPage() {
 
   return (
     <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
-      <nav className="fixed top-0 left-0 right-0 w-full z-[100] backdrop-blur-xl border-b border-[var(--border)] transition-colors duration-300 bg-[var(--bg-card)]/85" style={{ boxShadow: "0 2px 20px rgba(0,0,0,.08)" }}>
+      <nav className="fixed top-0 left-0 right-0 w-full z-[900] backdrop-blur-xl border-b border-[var(--border)] transition-colors duration-300 bg-[var(--bg-card)]/95" style={{ boxShadow: "0 2px 20px rgba(0,0,0,.08)" }}>
         <div className="max-w-[1280px] mx-auto flex items-center h-16 px-4 sm:px-6 gap-2 sm:gap-6 justify-between">
           <div className="flex items-center gap-2 sm:gap-4 shrink-0">
             <button
@@ -101,43 +101,40 @@ export default function CategoryPage() {
               <a href="/#login" className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card2)] font-semibold text-[13px] sm:text-[14px] px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg transition-all whitespace-nowrap no-underline">Log In</a>
               <a href="/#signin" className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card2)] font-semibold text-[13px] sm:text-[14px] px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg transition-all whitespace-nowrap no-underline">Sign In</a>
             </div>
+          </div>
         </div>
+
+        {mobileMenuOpen && (
+          <div className="md:hidden fixed inset-0 top-16 z-[999] flex pointer-events-auto">
+            <div
+              className="fixed inset-0 top-16 bg-black/40 backdrop-blur-xs transition-opacity cursor-pointer"
+              onClick={() => setMobileMenuOpen(false)}
+              onTouchStart={() => setMobileMenuOpen(false)}
+            />
+            <div 
+              className="relative z-10 w-[42%] sm:w-[38%] min-w-[190px] max-w-[230px] my-2 ml-2 rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] px-3 py-3.5 shadow-2xl flex flex-col justify-between overflow-y-auto"
+              style={{ height: "calc(100vh - 64px - 64px - 24px - env(safe-area-inset-bottom, 0px))" }}
+            >
+              <div className="flex flex-col gap-1">
+                <div className="text-[11px] font-bold text-[var(--text-muted)] uppercase tracking-wider px-2 py-1">Navigation</div>
+                {NAV_LINKS.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-[var(--text-primary)] font-medium text-[14px] py-2 px-2.5 rounded-lg hover:bg-[var(--bg-card2)] transition-colors no-underline flex items-center justify-between"
+                  >
+                    <span>{link.label}</span>
+                    <span className="text-[var(--text-muted)] text-[11px]">→</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
       </nav>
       {/* Spacer for fixed header */}
       <div className="h-16 w-full shrink-0" aria-hidden="true" />
-
-      {/* Mobile Drawer Menu & Fullscreen Backdrop outside <nav> */}
-      {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 z-[9999] flex">
-          <div
-            className="fixed inset-0 bg-black/40 backdrop-blur-xs transition-opacity cursor-pointer"
-            onClick={() => setMobileMenuOpen(false)}
-            onTouchEnd={() => setMobileMenuOpen(false)}
-          />
-          <div 
-            className="relative z-10 w-[42%] sm:w-[38%] min-w-[190px] max-w-[230px] my-2 ml-2 rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] px-3 py-3.5 shadow-2xl flex flex-col justify-between overflow-y-auto"
-            style={{ 
-              marginTop: "72px",
-              height: "calc(100vh - 64px - 64px - 24px - env(safe-area-inset-bottom, 0px))" 
-            }}
-          >
-            <div className="flex flex-col gap-1">
-              <div className="text-[11px] font-bold text-[var(--text-muted)] uppercase tracking-wider px-2 py-1">Navigation</div>
-              {NAV_LINKS.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-[var(--text-primary)] font-medium text-[14px] py-2 px-2.5 rounded-lg hover:bg-[var(--bg-card2)] transition-colors no-underline flex items-center justify-between"
-                >
-                  <span>{link.label}</span>
-                  <span className="text-[var(--text-muted)] text-[11px]">→</span>
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
 
       <main style={{ flex: 1, padding: "40px 24px 60px", maxWidth: 1100, margin: "0 auto", width: "100%" }}>
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-10">
