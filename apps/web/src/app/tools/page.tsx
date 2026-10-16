@@ -2,6 +2,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+
 const TOOL_LIBRARY = [
   { icon: "📄", name: "PDF to Word", category: "pdf", description: "Convert PDFs to editable Word documents." },
   { icon: "📑", name: "PDF to Text", category: "pdf", description: "Extract text from PDF files." },
@@ -407,7 +409,7 @@ export default function ToolWorkspacePage() {
 
                         if (!socialPreview) {
                           setMessage(`Fetching media info from ${currentTool.name}...`);
-                          const response = await fetch("http://localhost:4000/info", {
+                          const response = await fetch(`${API_BASE}/info`, {
                             method: "POST",
                             body: formData,
                           });
@@ -636,7 +638,7 @@ export default function ToolWorkspacePage() {
                                 formData.append("itemIndex", selectedMediaIndex.toString());
                                 formData.append("files", new Blob(["dummy"], { type: 'text/plain' }), "dummy.txt");
 
-                                const response = await fetch("http://localhost:4000/convert", {
+                                const response = await fetch(`${API_BASE}/convert`, {
                                   method: "POST",
                                   body: formData,
                                 });
@@ -729,7 +731,7 @@ export default function ToolWorkspacePage() {
                                   formData.append("downloadAll", "true");
                                   formData.append("files", new Blob(["dummy"], { type: 'text/plain' }), "dummy.txt");
 
-                                  const response = await fetch("http://localhost:4000/convert", {
+                                  const response = await fetch(`${API_BASE}/convert`, {
                                     method: "POST",
                                     body: formData,
                                   });
@@ -2196,7 +2198,7 @@ export default function ToolWorkspacePage() {
                             formData.append("pdfPassword", pdfPassword);
                           }
 
-                          const response = await fetch("http://localhost:4000/convert", {
+                          const response = await fetch(`${API_BASE}/convert`, {
                             method: "POST",
                             body: formData,
                           });

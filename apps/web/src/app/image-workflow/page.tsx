@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { NAV_LINKS } from "../page";
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+
 interface ImageStep {
   id: string;
   tool: string;
@@ -197,7 +199,7 @@ export default function ImageWorkflowPage() {
           formData.append("pdfMargin", step.options.margin || "small");
         }
 
-        const res = await fetch("http://localhost:4000/convert", {
+        const res = await fetch(`${API_BASE}/convert`, {
           method: "POST",
           body: formData,
         });
