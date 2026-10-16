@@ -317,68 +317,68 @@ function Hero({ dark }: { dark: boolean }) {
           : "linear-gradient(135deg, #eef2ff 0%, #f5f3ff 50%, #fff7ed 100%)",
       }}
     >
-      <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center justify-between gap-10 md:gap-14 relative z-10">
-        <div className="vx-fade-left flex-1 max-w-[620px] text-center md:text-left">
-          <h1 className="text-[clamp(36px,5.5vw,60px)] font-black leading-[1.08] tracking-tight mb-5 text-[var(--text-primary)]">
+      <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8 md:gap-14 relative z-10 w-full px-1 sm:px-0">
+        <div className="w-full flex-1 max-w-[620px] flex flex-col items-start text-left">
+          <h1 className="w-full text-[clamp(32px,5.5vw,56px)] font-black leading-[1.12] tracking-tight mb-4 text-[var(--text-primary)] text-left">
             All Your Files.<br />
             <span className="text-[#2563eb]">One Place.</span>
           </h1>
 
-          <p className="text-[16px] sm:text-[18px] text-[var(--text-secondary)] leading-relaxed mb-6 max-w-[500px] mx-auto md:mx-0">
+          <p className="w-full text-[15px] sm:text-[18px] text-[var(--text-secondary)] leading-relaxed mb-6 text-left">
             Convert, edit, compress and manage your PDF, video, image, audio and more — fast, secure, and packed with our Canva-style document studio.
           </p>
 
-          {/* Action CTAs: Direct Editor Link & Tools */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center md:justify-start gap-3 mb-7 max-w-[420px] mx-auto md:mx-0">
+          {/* Action CTAs: Full width horizontal layout */}
+          <div className="flex flex-row items-center justify-center md:justify-start gap-3 sm:gap-4 mb-7 w-full">
             <a
               href="/editor"
-              className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-700 to-purple-600 text-white font-bold text-[14px] sm:text-[15px] shadow-lg hover:shadow-indigo-500/25 hover:scale-[1.02] active:scale-98 transition-all no-underline"
+              className="flex-1 flex items-center justify-center gap-2 px-4 sm:px-6 py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-700 to-purple-600 text-white font-bold text-[14px] sm:text-[16px] shadow-lg hover:shadow-indigo-500/25 hover:scale-[1.01] active:scale-98 transition-all no-underline whitespace-nowrap"
             >
-              <Sparkles size={16} />
-              <span>Open Canva PDF Editor</span>
+              <Sparkles size={17} className="shrink-0" />
+              <span>Canva PDF Editor</span>
             </a>
             <a
               href="/workflow"
-              className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white dark:bg-white/10 hover:bg-gray-50 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-100 font-bold text-[14px] sm:text-[15px] shadow-xs hover:scale-[1.02] active:scale-98 transition-all no-underline"
+              className="flex-1 flex items-center justify-center gap-2 px-4 sm:px-6 py-3.5 rounded-xl bg-white dark:bg-white/10 hover:bg-gray-50 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-100 font-bold text-[14px] sm:text-[16px] shadow-xs hover:scale-[1.01] active:scale-98 transition-all no-underline whitespace-nowrap"
             >
-              <SlidersHorizontal size={15} />
+              <SlidersHorizontal size={16} className="shrink-0" />
               <span>Custom Workflows</span>
             </a>
           </div>
 
-          {/* Three Feature Badges: Guaranteed single horizontal line on all mobile screens */}
-          <div className="flex flex-row items-center justify-between w-full py-2.5 px-3 rounded-2xl bg-white/70 dark:bg-white/5 backdrop-blur-md border border-[var(--border)] shadow-xs max-w-[480px] mx-auto md:mx-0">
-            <div className="flex flex-1 items-center justify-center sm:justify-start gap-1.5 sm:gap-2 px-1">
-              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
-                <ShieldCheck size={14} className="sm:w-4 sm:h-4" />
+          {/* Three Feature Badges: Full width horizontal single line strip */}
+          <div className="flex flex-row items-center justify-between w-full py-3 px-4 sm:px-6 rounded-2xl bg-white/70 dark:bg-white/5 backdrop-blur-md border border-[var(--border)] shadow-xs">
+            <div className="flex flex-1 items-center justify-center sm:justify-start gap-2 px-1">
+              <div className="w-8 h-8 rounded-full bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
+                <ShieldCheck size={16} />
               </div>
               <div className="min-w-0 text-left">
-                <div className="text-[11px] sm:text-[13px] font-extrabold text-[var(--text-primary)] leading-tight whitespace-nowrap">100% Secure</div>
-                <div className="text-[9px] sm:text-[11px] text-[var(--text-secondary)] whitespace-nowrap hidden sm:block">Your files are safe</div>
+                <div className="text-[12px] sm:text-[13px] font-extrabold text-[var(--text-primary)] leading-tight whitespace-nowrap">100% Secure</div>
+                <div className="text-[10px] sm:text-[11px] text-[var(--text-secondary)] whitespace-nowrap">Your files are safe</div>
               </div>
             </div>
 
-            <div className="w-px h-6 bg-[var(--border)] shrink-0 mx-1" />
+            <div className="w-px h-7 bg-[var(--border)] shrink-0 mx-2" />
 
-            <div className="flex flex-1 items-center justify-center sm:justify-start gap-1.5 sm:gap-2 px-1">
-              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-purple-50 dark:bg-purple-950/40 text-purple-600 dark:text-purple-400 flex items-center justify-center shrink-0">
-                <Zap size={14} className="sm:w-4 sm:h-4" />
+            <div className="flex flex-1 items-center justify-center sm:justify-start gap-2 px-1">
+              <div className="w-8 h-8 rounded-full bg-purple-50 dark:bg-purple-950/40 text-purple-600 dark:text-purple-400 flex items-center justify-center shrink-0">
+                <Zap size={16} />
               </div>
               <div className="min-w-0 text-left">
-                <div className="text-[11px] sm:text-[13px] font-extrabold text-[var(--text-primary)] leading-tight whitespace-nowrap">Super Fast</div>
-                <div className="text-[9px] sm:text-[11px] text-[var(--text-secondary)] whitespace-nowrap hidden sm:block">Instant processing</div>
+                <div className="text-[12px] sm:text-[13px] font-extrabold text-[var(--text-primary)] leading-tight whitespace-nowrap">Super Fast</div>
+                <div className="text-[10px] sm:text-[11px] text-[var(--text-secondary)] whitespace-nowrap">Instant processing</div>
               </div>
             </div>
 
-            <div className="w-px h-6 bg-[var(--border)] shrink-0 mx-1" />
+            <div className="w-px h-7 bg-[var(--border)] shrink-0 mx-2" />
 
-            <div className="flex flex-1 items-center justify-center sm:justify-start gap-1.5 sm:gap-2 px-1">
-              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
-                <Sparkles size={14} className="sm:w-4 sm:h-4" />
+            <div className="flex flex-1 items-center justify-center sm:justify-start gap-2 px-1">
+              <div className="w-8 h-8 rounded-full bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
+                <Sparkles size={16} />
               </div>
               <div className="min-w-0 text-left">
-                <div className="text-[11px] sm:text-[13px] font-extrabold text-[var(--text-primary)] leading-tight whitespace-nowrap">Free to Use</div>
-                <div className="text-[9px] sm:text-[11px] text-[var(--text-secondary)] whitespace-nowrap hidden sm:block">No installation</div>
+                <div className="text-[12px] sm:text-[13px] font-extrabold text-[var(--text-primary)] leading-tight whitespace-nowrap">Free to Use</div>
+                <div className="text-[10px] sm:text-[11px] text-[var(--text-secondary)] whitespace-nowrap">No installation</div>
               </div>
             </div>
           </div>
