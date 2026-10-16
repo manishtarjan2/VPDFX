@@ -384,23 +384,23 @@ function Hero({ dark }: { dark: boolean }) {
           </div>
 
           {/* MINIMIZED INLINE GRAPHIC FOR MOBILE: strictly bounded inside the text area */}
-          <div className="flex md:hidden items-center justify-center w-full mt-6 py-2">
-            <div className="relative flex items-center justify-center w-[170px] h-[140px]">
-              <img src={dark ? "/image-dark.png" : "/image-copy.png"} alt="VPDFX Logo" className="max-w-[70%] max-h-[70%] object-contain relative z-10 drop-shadow-lg" />
+          <div className="flex md:hidden items-center justify-center w-full mt-5 py-2">
+            <div className="relative flex items-center justify-center w-[160px] h-[130px]">
+              <img src="/app-icon.png" alt="VPDFX Emblem" className="max-w-[70%] max-h-[70%] object-contain relative z-10 drop-shadow-xl" />
               
-              <div className="absolute top-[6%] left-[4%] w-8 h-8 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-[var(--border)] flex items-center justify-center z-20 animate-[floatA_4.5s_ease-in-out_infinite]">
+              <div className="absolute top-[4%] left-[4%] w-8 h-8 bg-white dark:bg-slate-800 rounded-xl shadow-md border border-[var(--border)] flex items-center justify-center z-20 animate-[floatA_4.5s_ease-in-out_infinite]">
                 <div className="bg-[#ef4444] text-white w-5 h-5 rounded flex items-center justify-center text-[7px] font-black tracking-tight">PDF</div>
               </div>
               
-              <div className="absolute bottom-[8%] left-[2%] w-8 h-8 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-[var(--border)] flex items-center justify-center z-20 animate-[floatB_5s_ease-in-out_infinite_1s]">
+              <div className="absolute bottom-[6%] left-[2%] w-8 h-8 bg-white dark:bg-slate-800 rounded-xl shadow-md border border-[var(--border)] flex items-center justify-center z-20 animate-[floatB_5s_ease-in-out_infinite_1s]">
                 <span className="text-[14px]">📄</span>
               </div>
               
-              <div className="absolute top-[8%] right-[4%] w-8 h-8 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-[var(--border)] flex items-center justify-center z-20 animate-[floatB_4.2s_ease-in-out_infinite_0.5s]">
+              <div className="absolute top-[6%] right-[4%] w-8 h-8 bg-white dark:bg-slate-800 rounded-xl shadow-md border border-[var(--border)] flex items-center justify-center z-20 animate-[floatB_4.2s_ease-in-out_infinite_0.5s]">
                 <div className="bg-[#8b5cf6] text-white w-5 h-5 rounded flex items-center justify-center text-[10px]">🎥</div>
               </div>
               
-              <div className="absolute bottom-[6%] right-[2%] w-8 h-8 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-[var(--border)] flex items-center justify-center z-20 animate-[floatA_5.2s_ease-in-out_infinite_1.5s]">
+              <div className="absolute bottom-[6%] right-[2%] w-8 h-8 bg-white dark:bg-slate-800 rounded-xl shadow-md border border-[var(--border)] flex items-center justify-center z-20 animate-[floatA_5.2s_ease-in-out_infinite_1.5s]">
                 <div className="bg-[#10b981] text-white w-5 h-5 rounded flex items-center justify-center text-[11px]">🖼️</div>
               </div>
             </div>
@@ -410,7 +410,7 @@ function Hero({ dark }: { dark: boolean }) {
         {/* DESKTOP FLOATING GRAPHIC (right side on md screens) */}
         <div className="hidden md:flex flex-1 flex-col justify-center items-center relative w-full max-w-[420px]">
           <div className="relative justify-center items-center w-[220px] h-[220px] md:w-[260px] md:h-[260px] flex">
-            <img src={dark ? "/image-dark.png" : "/image-copy.png"} alt="VPDFX Graphic" className="max-w-[75%] max-h-[75%] object-contain relative z-10 drop-shadow-2xl" />
+            <img src="/app-icon.png" alt="VPDFX Graphic" className="max-w-[72%] max-h-[72%] object-contain relative z-10 drop-shadow-2xl" />
             
             <div className="absolute top-[2%] left-[4%] w-11 h-11 bg-white dark:bg-slate-800 rounded-xl shadow-[0_8px_20px_rgba(0,0,0,0.08)] border border-[var(--border)] flex items-center justify-center z-20 animate-[floatA_5.5s_ease-in-out_infinite]">
               <div className="bg-[#ef4444] text-white w-6 h-6 rounded flex items-center justify-center text-[8px] font-black tracking-tight">PDF</div>
