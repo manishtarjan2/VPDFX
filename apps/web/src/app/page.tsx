@@ -319,10 +319,34 @@ function Hero({ dark }: { dark: boolean }) {
     >
       <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8 md:gap-14 relative z-10 w-full px-1 sm:px-0">
         <div className="w-full flex-1 max-w-[620px] flex flex-col items-start text-left">
-          <h1 className="w-full text-[clamp(32px,5.5vw,56px)] font-black leading-[1.12] tracking-tight mb-4 text-[var(--text-primary)] text-left">
-            All Your Files.<br />
-            <span className="text-[#2563eb]">One Place.</span>
-          </h1>
+          {/* Hero Headline & Mobile Mini Emblem Inline */}
+          <div className="flex flex-row items-center justify-between gap-3 w-full mb-4">
+            <h1 className="flex-1 text-[clamp(28px,5.2vw,56px)] font-black leading-[1.12] tracking-tight text-[var(--text-primary)] text-left">
+              All Your Files.<br />
+              <span className="text-[#2563eb]">One Place.</span>
+            </h1>
+
+            {/* REDUCED SIZE EMBLEM IN FRONT OF / NEXT TO TITLE ON MOBILE */}
+            <div className="flex md:hidden shrink-0 items-center justify-center relative w-[105px] h-[95px] pr-1">
+              <img src="/app-icon.png" alt="VPDFX Emblem" className="max-w-[70%] max-h-[70%] object-contain relative z-10 drop-shadow-md" />
+              
+              <div className="absolute top-[2%] left-[2%] w-6 h-6 bg-white dark:bg-slate-800 rounded-lg shadow border border-[var(--border)] flex items-center justify-center z-20 animate-[floatA_4.5s_ease-in-out_infinite]">
+                <div className="bg-[#ef4444] text-white w-4 h-4 rounded flex items-center justify-center text-[6px] font-black tracking-tight">PDF</div>
+              </div>
+              
+              <div className="absolute bottom-[2%] left-[0%] w-6 h-6 bg-white dark:bg-slate-800 rounded-lg shadow border border-[var(--border)] flex items-center justify-center z-20 animate-[floatB_5s_ease-in-out_infinite_1s]">
+                <span className="text-[11px]">📄</span>
+              </div>
+              
+              <div className="absolute top-[2%] right-[2%] w-6 h-6 bg-white dark:bg-slate-800 rounded-lg shadow border border-[var(--border)] flex items-center justify-center z-20 animate-[floatB_4.2s_ease-in-out_infinite_0.5s]">
+                <div className="bg-[#8b5cf6] text-white w-4 h-4 rounded flex items-center justify-center text-[8px]">🎥</div>
+              </div>
+              
+              <div className="absolute bottom-[2%] right-[0%] w-6 h-6 bg-white dark:bg-slate-800 rounded-lg shadow border border-[var(--border)] flex items-center justify-center z-20 animate-[floatA_5.2s_ease-in-out_infinite_1.5s]">
+                <div className="bg-[#10b981] text-white w-4 h-4 rounded flex items-center justify-center text-[8px]">🖼️</div>
+              </div>
+            </div>
+          </div>
 
           <p className="w-full text-[15px] sm:text-[18px] text-[var(--text-secondary)] leading-relaxed mb-6 text-left">
             Convert, edit, compress and manage your PDF, video, image, audio and more — fast, secure, and packed with our Canva-style document studio.
@@ -379,29 +403,6 @@ function Hero({ dark }: { dark: boolean }) {
               <div className="min-w-0 text-left">
                 <div className="text-[12px] sm:text-[13px] font-extrabold text-[var(--text-primary)] leading-tight whitespace-nowrap">Free to Use</div>
                 <div className="text-[10px] sm:text-[11px] text-[var(--text-secondary)] whitespace-nowrap">No installation</div>
-              </div>
-            </div>
-          </div>
-
-          {/* MINIMIZED INLINE GRAPHIC FOR MOBILE: strictly bounded inside the text area */}
-          <div className="flex md:hidden items-center justify-center w-full mt-5 py-2">
-            <div className="relative flex items-center justify-center w-[160px] h-[130px]">
-              <img src="/app-icon.png" alt="VPDFX Emblem" className="max-w-[70%] max-h-[70%] object-contain relative z-10 drop-shadow-xl" />
-              
-              <div className="absolute top-[4%] left-[4%] w-8 h-8 bg-white dark:bg-slate-800 rounded-xl shadow-md border border-[var(--border)] flex items-center justify-center z-20 animate-[floatA_4.5s_ease-in-out_infinite]">
-                <div className="bg-[#ef4444] text-white w-5 h-5 rounded flex items-center justify-center text-[7px] font-black tracking-tight">PDF</div>
-              </div>
-              
-              <div className="absolute bottom-[6%] left-[2%] w-8 h-8 bg-white dark:bg-slate-800 rounded-xl shadow-md border border-[var(--border)] flex items-center justify-center z-20 animate-[floatB_5s_ease-in-out_infinite_1s]">
-                <span className="text-[14px]">📄</span>
-              </div>
-              
-              <div className="absolute top-[6%] right-[4%] w-8 h-8 bg-white dark:bg-slate-800 rounded-xl shadow-md border border-[var(--border)] flex items-center justify-center z-20 animate-[floatB_4.2s_ease-in-out_infinite_0.5s]">
-                <div className="bg-[#8b5cf6] text-white w-5 h-5 rounded flex items-center justify-center text-[10px]">🎥</div>
-              </div>
-              
-              <div className="absolute bottom-[6%] right-[2%] w-8 h-8 bg-white dark:bg-slate-800 rounded-xl shadow-md border border-[var(--border)] flex items-center justify-center z-20 animate-[floatA_5.2s_ease-in-out_infinite_1.5s]">
-                <div className="bg-[#10b981] text-white w-5 h-5 rounded flex items-center justify-center text-[11px]">🖼️</div>
               </div>
             </div>
           </div>
