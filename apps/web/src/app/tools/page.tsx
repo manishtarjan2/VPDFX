@@ -350,6 +350,7 @@ export default function ToolWorkspacePage() {
           <div style={{ display: "flex", justifyContent: "center" }}>
             {currentTool.category === 'social' ? (
               <div
+                className="vx-social-box"
                 style={{
                   display: "flex",
                   flexDirection: "column",
@@ -365,7 +366,7 @@ export default function ToolWorkspacePage() {
                 }}
               >
                 <div style={{ fontSize: 52, marginBottom: 12 }}>{currentTool.icon}</div>
-                <h2 style={{ fontSize: 26, fontWeight: 900, marginBottom: 8, color: "#1e3a8a" }}>Download {currentTool.name} Media</h2>
+                <h2 style={{ fontSize: 26, fontWeight: 900, marginBottom: 8, color: "#1e3a8a", textAlign: "center" }}>Download {currentTool.name} Media</h2>
                 <p style={{ fontSize: 14, color: "#64748b", marginBottom: 24, textAlign: "center", maxWidth: 580 }}>
                   {currentTool.name === 'Instagram'
                     ? "Download Instagram Reels, Stories, Photos, and Multi-Image Carousel Posts in original Full HD quality or MP3 audio."
@@ -373,7 +374,7 @@ export default function ToolWorkspacePage() {
                   }
                 </p>
 
-                <div style={{ display: "flex", width: "100%", maxWidth: 650, gap: 12 }}>
+                <div className="vx-social-input-bar" style={{ display: "flex", width: "100%", maxWidth: 650, gap: 12 }}>
                   <input
                     type="text"
                     value={url}
@@ -812,6 +813,7 @@ export default function ToolWorkspacePage() {
                 }}
               >
                 <div
+                  className="vx-dropzone-button"
                   style={{
                     background: "#e5322d",
                     color: "white",
@@ -890,9 +892,9 @@ export default function ToolWorkspacePage() {
                 />
               </label>
             ) : (
-              <div style={{ display: "flex", gap: 32, width: "100%" }}>
+              <div className="vx-tool-workspace" style={{ display: "flex", gap: 32, width: "100%" }}>
                 {/* Main Preview Area */}
-                <div style={{ flex: 1, background: "#f1f5f9", borderRadius: 12, padding: 30, display: "flex", flexWrap: "wrap", gap: 20, alignContent: "flex-start", minHeight: 400 }}>
+                <div className="vx-tool-preview" style={{ flex: 1, background: "#f1f5f9", borderRadius: 12, padding: 30, display: "flex", flexWrap: "wrap", gap: 20, alignContent: "flex-start", minHeight: 400 }}>
                   {/* Dedicated Video Player for Extract Frames & Video Tools */}
                   {files.length > 0 && (selectedTool === 'Extract Frames' || files[0].type.startsWith('video/') || files[0].name.match(/\.(mp4|webm|mov|mkv|avi)$/i)) && (
                     <div style={{
@@ -1387,7 +1389,7 @@ export default function ToolWorkspacePage() {
                 </div>
 
                 {/* Action Sidebar */}
-                <div style={{ width: 320, background: "white", border: "1px solid #e2e8f0", borderRadius: 12, padding: 24, boxShadow: "0 12px 30px rgba(0,0,0,0.04)" }}>
+                <div className="vx-tool-sidebar" style={{ width: 320, background: "white", border: "1px solid #e2e8f0", borderRadius: 12, padding: 24, boxShadow: "0 12px 30px rgba(0,0,0,0.04)" }}>
                   <div style={{ fontSize: 22, fontWeight: 800, marginBottom: 20, color: "#333" }}>{currentTool.name} Options</div>
 
                   {selectedTool === 'Split PDF' && (

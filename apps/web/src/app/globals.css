@@ -403,6 +403,54 @@ input[type="number"] {
   .vx-sign-btns  { display: none !important; }
 }
 
+/* ── Mobile Layout Optimization for Tools & Small Devices ── */
+@media (max-width: 768px) {
+  /* Tool page main work area stacks vertically on mobile */
+  .vx-tool-workspace {
+    flex-direction: column-reverse !important;
+    gap: 20px !important;
+  }
+  
+  .vx-tool-sidebar {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 0 !important;
+  }
+
+  .vx-tool-preview {
+    width: 100% !important;
+    padding: 16px !important;
+    min-height: auto !important;
+  }
+
+  /* Social input bar wraps on small screens */
+  .vx-social-input-bar {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  .vx-social-input-bar input {
+    width: 100% !important;
+  }
+  .vx-social-input-bar button {
+    width: 100% !important;
+    padding: 14px 20px !important;
+    justify-content: center !important;
+  }
+
+  /* Drop zone adjustments for mobile touch */
+  .vx-dropzone-button {
+    font-size: 16px !important;
+    padding: 14px 20px !important;
+    text-align: center !important;
+    word-break: break-word !important;
+    width: 90% !important;
+  }
+
+  .vx-social-box {
+    padding: 24px 16px !important;
+  }
+}
+
 /* Suppress ResizeObserver error overlay flashing in dev mode */
 nextjs-portal { display: none !important; }
 #webpack-dev-server-client-overlay { display: none !important; }
